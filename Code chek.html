@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #fdfbfb, #ebedee);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        div {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        form {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        .reset-button {
+            background-color: #FF6347;
+        }
+
+        .reset-button:hover {
+            background-color: #D63E2D;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="codeForm">
+            <input type="text" id="codeInput" placeholder="Введите код">
+        </form>
+        <button id="checkButton">Проверить</button>
+        <button id="resetButton" class="reset-button">Перезапустить</button>
+        <p id="response"></p>
+    </div>
+
+    <script>
+        const textarea = document.getElementById('codeInput');
+        const response = document.getElementById('response');
+        const checkButton = document.getElementById('checkButton');
+        const resetButton = document.getElementById('resetButton');
+        const codeForm = document.getElementById('codeForm');
+
+        // Определяем "правильные" коды
+        const validCode1 = "ебтолзрлль";
+        const validCode2 = "ЕБТОЛЗРЛЛЬ";
+        const errorCode = "2011";
+
+        // Обработчик проверки кода
+        checkButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Останавливаем стандартное поведение формы
+            const input = textarea.value.trim(); // Получаем значение из textarea
+            if (input === validCode1 || input === validCode2 || input === errorCode) {
+                response.textContent = "Код верный! Папа ты огромный молодец! Кроссворд был ооочень сложный! Следующий файл: a lot befor end, Пароль: MihhaHasBirthday. Удачи!";
+                response.style.color = "green";
+            } else {
+                response.textContent = "Код неверный. Попробуйте ещё раз.";
+                response.style.color = "red";
+            }
+        });
+
+        // Обработчик перезапуска формы
+        resetButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Останавливаем стандартное поведение кнопки
+            codeForm.reset(); // Сбрасываем форму
+            response.textContent = ""; // Очищаем текст ответа
+        });
+    </script>
+</body>
+</html>
